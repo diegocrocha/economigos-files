@@ -1,5 +1,7 @@
 package com.economigos.economigosfiles.utils.fileio;
 
+import com.economigos.economigosfiles.utils.structures.PilhaObj;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -7,9 +9,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.FormatterClosedException;
 
-public class GravaArquivo {
+public class GravaArquivo<T> {
 
-    public static void gravaLista(ListaObj<Entrega> lista, String nomeDoArquivo, Boolean csvFile) {
+    public void gravaLista(PilhaObj<T> lista, String nomeDoArquivo, Boolean csvFile) {
         FileWriter arquivo = null;
         String registro = "";
         String nomeDoArquivoDefault = "entregas.csv";
