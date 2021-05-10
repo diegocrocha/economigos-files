@@ -1,4 +1,4 @@
-package com.economigos.economigosfiles.utils;
+package com.economigos.economigosfiles.utils.structures;
 
 public class PilhaObj<T> {
     private T[] pilha;
