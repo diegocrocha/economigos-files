@@ -14,6 +14,9 @@ public class Conta {
     private List<Renda> rendas;
     private List<Gasto> gastos;
 
+    public Conta() {
+    }
+
     public Conta(Long id, String banco, String numeroConta, String descricao, String apelido, Double valorAtual, Usuario usuario, List<Renda> rendas, List<Gasto> gastos) {
         this.id = id;
         this.banco = banco;
