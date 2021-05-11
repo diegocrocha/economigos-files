@@ -47,4 +47,14 @@ public class Categoria {
     public void setRendas(List<Renda> rendas) {
         this.rendas = rendas;
     }
+
+    @Override
+    public String toString() {
+        return "Categoria{" +
+                "id=" + id +
+                ", categoria='" + categoria + '\'' +
+                ", gastos=" + gastos +
+                ", rendas=" + rendas +
+                '}';
+    }
 }

@@ -95,4 +95,19 @@ public class Renda {
     public void setRecebido(Boolean recebido) {
         this.recebido = recebido;
     }
+
+    @Override
+    public String toString() {
+        return "Renda{" +
+                "id=" + id +
+                ", tipo='" + tipo + '\'' +
+                ", conta=" + conta +
+                ", categoria=" + categoria +
+                ", valor=" + valor +
+                ", descricao='" + descricao + '\'' +
+                ", dataPagamento='" + dataPagamento + '\'' +
+                ", fixo=" + fixo +
+                ", recebido=" + recebido +
+                '}';
+    }
 }

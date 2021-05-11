@@ -98,4 +98,19 @@ public class Cartao {
     public void setGastos(List<Gasto> gastos) {
         this.gastos = gastos;
     }
+
+    @Override
+    public String toString() {
+        return "Cartao{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", fechamento=" + fechamento +
+                ", vencimento=" + vencimento +
+                ", pago=" + pago +
+                ", limite=" + limite +
+                ", valor=" + valor +
+                ", usuario=" + usuario +
+                ", gastos=" + gastos +
+                '}';
+    }
 }

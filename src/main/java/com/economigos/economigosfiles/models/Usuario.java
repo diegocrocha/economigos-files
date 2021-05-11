@@ -68,4 +68,16 @@ public class Usuario {
     public void setDataCriacao(LocalDateTime dataCriacao) {
         this.dataCriacao = dataCriacao;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", senha='" + senha + '\'' +
+                ", contas=" + contas +
+                ", cartoes=" + cartoes +
+                ", dataCriacao=" + dataCriacao +
+                '}';
+    }
 }

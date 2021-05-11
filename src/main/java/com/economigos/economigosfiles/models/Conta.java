@@ -100,4 +100,19 @@ public class Conta {
     public void setGastos(List<Gasto> gastos) {
         this.gastos = gastos;
     }
+
+    @Override
+    public String toString() {
+        return "Conta{" +
+                "id=" + id +
+                ", banco='" + banco + '\'' +
+                ", numeroConta='" + numeroConta + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", apelido='" + apelido + '\'' +
+                ", valorAtual=" + valorAtual +
+                ", usuario=" + usuario +
+                ", rendas=" + rendas +
+                ", gastos=" + gastos +
+                '}';
+    }
 }

@@ -105,4 +105,20 @@ public class Gasto {
     public void setCartao(Cartao cartao) {
         this.cartao = cartao;
     }
+
+    @Override
+    public String toString() {
+        return "Gasto{" +
+                "id=" + id +
+                ", tipo='" + tipo + '\'' +
+                ", conta=" + conta +
+                ", categoria=" + categoria +
+                ", valor=" + valor +
+                ", descricao='" + descricao + '\'' +
+                ", dataPagamento='" + dataPagamento + '\'' +
+                ", fixo=" + fixo +
+                ", pago=" + pago +
+                ", cartao=" + cartao +
+                '}';
+    }
 }
