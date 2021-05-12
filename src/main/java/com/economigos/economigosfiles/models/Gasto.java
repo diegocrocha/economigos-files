@@ -3,27 +3,22 @@ package com.economigos.economigosfiles.models;
 public class Gasto {
 
     private Long id;
-    private String tipo;
-    private Conta conta;
     private Categoria categoria;
     private Double valor;
+    private Boolean pago;
     private String descricao;
     private String dataPagamento;
-    private Boolean fixo;
-    private Boolean pago;
-    private Cartao cartao;
 
-    public Gasto(Long id, String tipo, Conta conta, Categoria categoria, Double valor, String descricao, String dataPagamento, Boolean fixo, Boolean pago, Cartao cartao) {
+    public Gasto() {
+    }
+
+    public Gasto(Long id, Categoria categoria, Double valor, Boolean pago, String descricao, String dataPagamento) {
         this.id = id;
-        this.tipo = tipo;
-        this.conta = conta;
         this.categoria = categoria;
         this.valor = valor;
+        this.pago = pago;
         this.descricao = descricao;
         this.dataPagamento = dataPagamento;
-        this.fixo = fixo;
-        this.pago = pago;
-        this.cartao = cartao;
     }
 
     public Long getId() {
@@ -32,22 +27,6 @@ public class Gasto {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
-
-    public Conta getConta() {
-        return conta;
-    }
-
-    public void setConta(Conta conta) {
-        this.conta = conta;
     }
 
     public Categoria getCategoria() {
@@ -66,6 +45,14 @@ public class Gasto {
         this.valor = valor;
     }
 
+    public Boolean getPago() {
+        return pago;
+    }
+
+    public void setPago(Boolean pago) {
+        this.pago = pago;
+    }
+
     public String getDescricao() {
         return descricao;
     }
@@ -82,43 +69,15 @@ public class Gasto {
         this.dataPagamento = dataPagamento;
     }
 
-    public Boolean getFixo() {
-        return fixo;
-    }
-
-    public void setFixo(Boolean fixo) {
-        this.fixo = fixo;
-    }
-
-    public Boolean getPago() {
-        return pago;
-    }
-
-    public void setPago(Boolean pago) {
-        this.pago = pago;
-    }
-
-    public Cartao getCartao() {
-        return cartao;
-    }
-
-    public void setCartao(Cartao cartao) {
-        this.cartao = cartao;
-    }
-
     @Override
     public String toString() {
         return "Gasto{" +
                 "id=" + id +
-                ", tipo='" + tipo + '\'' +
-                ", conta=" + conta +
                 ", categoria=" + categoria +
                 ", valor=" + valor +
+                ", pago=" + pago +
                 ", descricao='" + descricao + '\'' +
                 ", dataPagamento='" + dataPagamento + '\'' +
-                ", fixo=" + fixo +
-                ", pago=" + pago +
-                ", cartao=" + cartao +
                 '}';
     }
 }
