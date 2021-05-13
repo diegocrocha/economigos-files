@@ -60,11 +60,21 @@ public class ContabilUltimasAtividades implements Comparable<ContabilUltimasAtiv
         LocalDateTime thisRendaDate = LocalDateTime.parse(this.getData(), formatter);
         LocalDateTime outraRendaDate = LocalDateTime.parse(o.getData(), formatter);
 
-        if (thisRendaDate.isAfter(outraRendaDate)) {
+        if (thisRendaDate.isBefore(outraRendaDate)) {
             return -1;
-        } if (thisRendaDate.isBefore(outraRendaDate)) {
+        } if (thisRendaDate.isAfter(outraRendaDate)) {
             return 1;
         }
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "ContabilUltimasAtividades{" +
+                "descricao='" + descricao + '\'' +
+                ", data='" + data + '\'' +
+                ", valor=" + valor +
+                ", tipo='" + tipo + '\'' +
+                '}';
     }
 }
