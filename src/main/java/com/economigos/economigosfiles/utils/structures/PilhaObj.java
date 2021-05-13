@@ -2,10 +2,36 @@ package com.economigos.economigosfiles.utils.structures;
 
 public class PilhaObj<T> {
     private T[] pilha;
+    private Integer size;
     private Integer topo;
+
+    public T[] getPilha() {
+        return pilha;
+    }
+
+    public void setPilha(T[] pilha) {
+        this.pilha = pilha;
+    }
+
+    public Integer getSize() {
+        return size;
+    }
+
+    public void setSize(Integer size) {
+        this.size = size;
+    }
+
+    public Integer getTopo() {
+        return topo;
+    }
+
+    public void setTopo(Integer topo) {
+        this.topo = topo;
+    }
 
     public PilhaObj(Integer size) {
         this.pilha = (T[]) new Object[size];
+        this.size = size;
         this.topo = -1;
     }
 

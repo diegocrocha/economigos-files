@@ -1,17 +1,8 @@
 package com.economigos.economigosfiles.utils.fileio;
 
-import com.economigos.economigosfiles.utils.structures.PilhaObj;
+public class GravaArquivo {
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.FormatterClosedException;
-
-public class GravaArquivo<T> {
-
-//    public void gravaLista(PilhaObj<T> lista, String nomeDoArquivo, Boolean csvFile) {
+//    public void gravaPilha(PilhaObj<Renda> pilha, String nomeDoArquivo, Boolean csvFile) {
 //        FileWriter arquivo = null;
 //        String registro = "";
 //        String nomeDoArquivoDefault = "entregas.csv";
@@ -24,16 +15,15 @@ public class GravaArquivo<T> {
 //            nomeDoArquivo += ".csv";
 //
 //            try {
-//                for (int i = 0; i < lista.getTamanho(); i++) {
-//                    Entrega entrega = lista.getElemento(i);
+//                for (int i = 0; i < pilha.getSize(); i++) {
+//                    Renda rendaDaVez = pilha.pop();
 //                    registro = String.format
-//                            ("%04d;%-20s;%-30s;%-50s;%05d;%05.2f;",
-//                                    entrega.getId(),
-//                                    entrega.getEstado(),
-//                                    entrega.getCidade(),
-//                                    entrega.getRua(),
-//                                    entrega.getNumero(),
-//                                    entrega.getDistancia()
+//                            ("%04d ; %-20s ; %-30s ; %-50s ; %05d ; %05.2f;",
+//                                    rendaDaVez.getId(),
+//                                    rendaDaVez.getValor(),
+//                                    rendaDaVez.getRecebido(),
+//                                    rendaDaVez.getDescricao(),
+//                                    rendaDaVez.getDataPagamento()
 //                            );
 //                    gravaRegistro(nomeDoArquivo, registro);
 //                }
@@ -53,11 +43,11 @@ public class GravaArquivo<T> {
 //
 //        } else {
 //            nomeDoArquivo += ".txt";
-//            gravarTxt(nomeDoArquivo, lista);
+//            gravarTxt(nomeDoArquivo, pilha);
 //        }
 //
 //    }
-
+//
 //    public static void gravaRegistro(String nomeArq, String registro) {
 //
 //        BufferedWriter saida = null;
@@ -80,9 +70,9 @@ public class GravaArquivo<T> {
 //            System.err.printf("Erro ao gravar arquivo: %s.\n", e.getMessage());
 //        }
 //    }
-
-
-//    public static void gravarTxt(String nomeArq, ListaObj<Entrega> entregas) {
+//
+//
+//    public static void gravarTxt(String nomeArq, PilhaObj<Entrega> entregas) {
 //
 //        String header = "";
 //        String corpo = "";

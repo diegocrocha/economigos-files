@@ -1,6 +1,7 @@
 package com.economigos.economigosfiles.controllers;
 
-import com.economigos.economigosfiles.services.ContaService;
+import com.economigos.economigosfiles.models.UltimasAtividades;
+import com.economigos.economigosfiles.services.ContabilUltimasAtividadesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,12 +15,12 @@ import javax.transaction.Transactional;
 public class FileController {
 
     @Autowired
-    ContaService contaService;
+    ContabilUltimasAtividadesService contabilUltimasAtividadesService;
 
     @GetMapping("/export/{idUsuario}/{idConta}")
     @Transactional
     public void teste(@PathVariable Long idUsuario, @PathVariable Long idConta) {
-        contaService.requestConta(idUsuario, idConta);
+        UltimasAtividades ultimasAtividades = contabilUltimasAtividadesService.requestConta(idUsuario, idConta);
     }
 
 }
