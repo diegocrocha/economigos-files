@@ -1,6 +1,6 @@
 package com.economigos.economigosfiles.utils.fileio;
 
-import com.economigos.economigosfiles.models.ContabilUltimasAtividades;
+import com.economigos.economigosfiles.dtos.ContabilUltimasAtividades;
 import com.economigos.economigosfiles.utils.structures.PilhaObj;
 
 import java.io.BufferedWriter;

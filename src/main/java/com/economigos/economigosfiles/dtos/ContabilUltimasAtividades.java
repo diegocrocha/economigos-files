@@ -1,4 +1,4 @@
-package com.economigos.economigosfiles.models;
+package com.economigos.economigosfiles.dtos;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;

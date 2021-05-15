@@ -1,7 +1,7 @@
 package com.economigos.economigosfiles.controllers;
 
-import com.economigos.economigosfiles.models.ContabilUltimasAtividades;
-import com.economigos.economigosfiles.models.UltimasAtividades;
+import com.economigos.economigosfiles.dtos.ContabilUltimasAtividades;
+import com.economigos.economigosfiles.dtos.UltimasAtividades;
 import com.economigos.economigosfiles.services.ContabilUltimasAtividadesService;
 import com.economigos.economigosfiles.utils.fileio.GravaArquivo;
 import com.economigos.economigosfiles.utils.structures.PilhaObj;

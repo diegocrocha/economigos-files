@@ -1,6 +1,4 @@
-package com.economigos.economigosfiles.models;
-
-import com.economigos.economigosfiles.models.ContabilUltimasAtividades;
+package com.economigos.economigosfiles.dtos;
 
 import java.util.List;
 

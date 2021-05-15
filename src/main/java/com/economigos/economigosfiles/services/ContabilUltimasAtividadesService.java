@@ -1,6 +1,6 @@
 package com.economigos.economigosfiles.services;
 
-import com.economigos.economigosfiles.models.UltimasAtividades;
+import com.economigos.economigosfiles.dtos.UltimasAtividades;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
