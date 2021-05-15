@@ -2,6 +2,8 @@ package com.economigos.economigosfiles.controllers;
 
 import com.economigos.economigosfiles.dtos.ContabilUltimasAtividades;
 import com.economigos.economigosfiles.dtos.UltimasAtividades;
+import com.economigos.economigosfiles.models.Anexo;
+import com.economigos.economigosfiles.repositories.AnexoRepository;
 import com.economigos.economigosfiles.services.ContabilUltimasAtividadesService;
 import com.economigos.economigosfiles.utils.fileio.GravaArquivo;
 import com.economigos.economigosfiles.utils.structures.PilhaObj;
@@ -12,11 +14,13 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Collections;
 import java.util.List;
 
@@ -26,6 +30,8 @@ public class FileController {
 
     @Autowired
     ContabilUltimasAtividadesService contabilUltimasAtividadesService;
+    @Autowired
+    AnexoRepository anexoRepository;
 
     @GetMapping("/export/{idUsuario}/{idConta}")
     @Transactional
@@ -68,6 +74,19 @@ public class FileController {
         }
 
         return ResponseEntity.badRequest().build();
+    }
+
+    @PostMapping("/import")
+    @Transactional
+    public ResponseEntity<String> importart(@RequestParam MultipartFile arquivo) throws IOException {
+        if(!arquivo.isEmpty()){
+            Anexo anexo = new Anexo(arquivo.getOriginalFilename(), "01".getBytes(), arquivo.getBytes(), "02".getBytes());
+            anexoRepository.save(anexo);
+
+            return ResponseEntity.ok().body("Arquivo guardado.");
+        }else{
+            return ResponseEntity.badRequest().body("Arquivo vazio.");
+        }
     }
 
 }
