@@ -108,7 +108,7 @@ public class GravaArquivo {
                 corpo += "03";
             }
             corpo += String.format("%-5s", atividadeDaVez.getTipo());
-            corpo += String.format("%05.2f", atividadeDaVez.getValor());
+            corpo += String.format("%010.2f", atividadeDaVez.getValor());
             corpo += String.format("%-30s", atividadeDaVez.getData());
             corpo += String.format("%s", atividadeDaVez.getData());
             contRegDados++;

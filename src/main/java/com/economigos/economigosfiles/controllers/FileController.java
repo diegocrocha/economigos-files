@@ -35,7 +35,9 @@ public class FileController {
 
     @GetMapping("/export/{idUsuario}/{idConta}")
     @Transactional
-    public ResponseEntity<Resource> getExtrato(@PathVariable Long idUsuario, @PathVariable Long idConta, @RequestParam Boolean csvFile) throws FileNotFoundException {
+    public ResponseEntity<Resource> getExtrato(@PathVariable Long idUsuario,
+                                               @PathVariable Long idConta,
+                                               @RequestParam Boolean csvFile) throws FileNotFoundException {
         UltimasAtividades ultimasAtividades = contabilUltimasAtividadesService.requestConta(idUsuario, idConta);
 
         List<ContabilUltimasAtividades> atividadesList = ultimasAtividades.getContabilUltimasAtividadesDtos();
