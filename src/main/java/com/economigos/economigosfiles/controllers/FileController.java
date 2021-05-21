@@ -2,7 +2,9 @@ package com.economigos.economigosfiles.controllers;
 
 import com.economigos.economigosfiles.dtos.ContabilUltimasAtividades;
 import com.economigos.economigosfiles.dtos.UltimasAtividades;
+import com.economigos.economigosfiles.models.Imagem;
 import com.economigos.economigosfiles.repositories.AnexoRepository;
+import com.economigos.economigosfiles.repositories.ImagemRepository;
 import com.economigos.economigosfiles.services.EconomigosService;
 import com.economigos.economigosfiles.utils.fileio.GravaArquivo;
 import com.economigos.economigosfiles.utils.fileio.LeArquivo;
@@ -29,10 +31,12 @@ public class FileController {
     EconomigosService economigosService;
     @Autowired
     AnexoRepository anexoRepository;
+    @Autowired
+    ImagemRepository imagemRepository;
 
-    @GetMapping("/export/{idUsuario}/{idConta}")
+    @GetMapping("/export/{idConta}")
     @Transactional
-    public ResponseEntity<Resource> getExtrato(@PathVariable Long idUsuario,
+    public ResponseEntity<Resource> getExtrato(@RequestParam Long idUsuario,
                                                @PathVariable Long idConta,
                                                @RequestParam Boolean csvFile) throws FileNotFoundException {
         UltimasAtividades ultimasAtividades = economigosService.requestContaById(idUsuario, idConta);
@@ -82,8 +86,6 @@ public class FileController {
         if(!arquivo.isEmpty()){
 
             if (!imagem) {
-
-
                 File file = new File("./src/main/resources/input-files/"+ arquivo.getOriginalFilename());
 
                 try (OutputStream os = new FileOutputStream(file)) {
@@ -94,12 +96,23 @@ public class FileController {
 
                 return ResponseEntity.ok().body("Arquivo guardado.");
             }else{
+                imagemRepository.save(new Imagem(arquivo.getOriginalFilename(), arquivo.getBytes()));
+
                 return ResponseEntity.ok().body("Imagem guardada.");
             }
 
         }else{
             return ResponseEntity.badRequest().body("Arquivo vazio.");
         }
+    }
+
+    @GetMapping(
+            value = "/images/{nomeImagem}",
+            produces = MediaType.IMAGE_JPEG_VALUE
+    )
+    public @ResponseBody byte[] getImageWithMediaType(@PathVariable String nomeImagem) throws IOException {
+
+        return imagemRepository.findByNome(nomeImagem).get().getConteudo();
     }
 
 }
