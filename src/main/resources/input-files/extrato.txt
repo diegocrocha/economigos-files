@@ -1,0 +1,6 @@
+00EXTRATO21-05-2021 18:07:1101
+02Gasto0000017,90Spotify                                           2021-03-01 00:00:00Entretenimento           C6BANK                   
+03Renda0002000,00Meu salário                                       2021-03-01 00:00:00Salário                  C6BANK                   
+02Gasto0000017,90Coxinha                                           2021-03-01 00:00:01Alimento                 C6BANK                   
+03Renda0002000,00Meu investimento                                  2021-03-01 00:00:01Investimento             C6BANK                   
+010000000004
