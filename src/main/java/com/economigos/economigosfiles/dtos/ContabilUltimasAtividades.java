@@ -9,15 +9,19 @@ public class ContabilUltimasAtividades implements Comparable<ContabilUltimasAtiv
     private String data;
     private Double valor;
     private String tipo;
+    private String categoria;
+    private String fonte;
 
     public ContabilUltimasAtividades() {
     }
 
-    public ContabilUltimasAtividades(String descricao, String data, Double valor, String tipo) {
+    public ContabilUltimasAtividades(String descricao, String data, Double valor, String tipo, String categoria, String fonte) {
         this.descricao = descricao;
         this.data = data;
         this.valor = valor;
         this.tipo = tipo;
+        this.categoria = categoria;
+        this.fonte = fonte;
     }
 
     public String getDescricao() {
@@ -52,6 +56,22 @@ public class ContabilUltimasAtividades implements Comparable<ContabilUltimasAtiv
         this.tipo = tipo;
     }
 
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public String getFonte() {
+        return fonte;
+    }
+
+    public void setFonte(String fonte) {
+        this.fonte = fonte;
+    }
+
     @Override
     public int compareTo(ContabilUltimasAtividades o) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -60,9 +80,10 @@ public class ContabilUltimasAtividades implements Comparable<ContabilUltimasAtiv
         LocalDateTime thisRendaDate = LocalDateTime.parse(this.getData(), formatter);
         LocalDateTime outraRendaDate = LocalDateTime.parse(o.getData(), formatter);
 
-        if (thisRendaDate.isBefore(outraRendaDate)) {
+        if (thisRendaDate.isAfter(outraRendaDate)) {
             return -1;
-        } if (thisRendaDate.isAfter(outraRendaDate)) {
+        }
+        if (thisRendaDate.isBefore(outraRendaDate)) {
             return 1;
         }
         return 0;

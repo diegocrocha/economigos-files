@@ -29,8 +29,8 @@ public class GravaArquivo {
         }
 
         try {
-                saida.append(registro + "\n");
-                saida.close();
+            saida.append(registro + "\n");
+            saida.close();
 
         } catch (IOException e) {
             System.err.printf("Erro ao gravar arquivo: %s.\n", e.getMessage());
@@ -42,7 +42,7 @@ public class GravaArquivo {
         boolean crashed = false;
 
         if (csvFile) {
-            nomeDoArquivo = "./src/main/resources/output-files/"+ nomeDoArquivo + ".csv";
+            nomeDoArquivo = "./src/main/resources/output-files/" + nomeDoArquivo + ".csv";
             file = new File(nomeDoArquivo);
             FileWriter arquivo = new FileWriter(file);
             arquivo.flush();
@@ -74,7 +74,7 @@ public class GravaArquivo {
             }
 
         } else {
-            nomeDoArquivo = "./src/main/resources/output-files/"+ nomeDoArquivo + ".txt";
+            nomeDoArquivo = "./src/main/resources/output-files/" + nomeDoArquivo + ".txt";
             file = new File(nomeDoArquivo);
             FileWriter arquivo = new FileWriter(file);
             arquivo.flush();
@@ -93,7 +93,7 @@ public class GravaArquivo {
         Date dataDeHoje = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
 
-        header += "00EXTRATO00189236";
+        header += "00EXTRATO";
         header += formatter.format(dataDeHoje);
         header += "01";
         gravaRegistro(nomeArq, header);
@@ -102,15 +102,18 @@ public class GravaArquivo {
             ContabilUltimasAtividades atividadeDaVez = pilha.pop();
 
             corpo = "";
-            if(atividadeDaVez.getTipo().equals("Gasto")){
+            if (atividadeDaVez.getTipo().equals("Gasto")) {
                 corpo += "02";
-            }else {
+            } else {
                 corpo += "03";
             }
             corpo += String.format("%-5s", atividadeDaVez.getTipo());
             corpo += String.format("%010.2f", atividadeDaVez.getValor());
-            corpo += String.format("%-30s", atividadeDaVez.getData());
-            corpo += String.format("%s", atividadeDaVez.getData());
+            corpo += String.format("%-50s", atividadeDaVez.getDescricao());
+            corpo += String.format("%-10s", atividadeDaVez.getData());
+            corpo += String.format("%-25s", atividadeDaVez.getCategoria());
+            corpo += String.format("%-15s", atividadeDaVez.getFonte());
+
             contRegDados++;
             gravaRegistro(nomeArq, corpo);
         }

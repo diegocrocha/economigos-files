@@ -2,10 +2,10 @@ package com.economigos.economigosfiles.controllers;
 
 import com.economigos.economigosfiles.dtos.ContabilUltimasAtividades;
 import com.economigos.economigosfiles.dtos.UltimasAtividades;
-import com.economigos.economigosfiles.models.Anexo;
 import com.economigos.economigosfiles.repositories.AnexoRepository;
-import com.economigos.economigosfiles.services.ContabilUltimasAtividadesService;
+import com.economigos.economigosfiles.services.EconomigosService;
 import com.economigos.economigosfiles.utils.fileio.GravaArquivo;
+import com.economigos.economigosfiles.utils.fileio.LeArquivo;
 import com.economigos.economigosfiles.utils.structures.PilhaObj;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -17,10 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
+import java.io.*;
 import java.util.Collections;
 import java.util.List;
 
@@ -29,7 +26,7 @@ import java.util.List;
 public class FileController {
 
     @Autowired
-    ContabilUltimasAtividadesService contabilUltimasAtividadesService;
+    EconomigosService economigosService;
     @Autowired
     AnexoRepository anexoRepository;
 
@@ -38,7 +35,7 @@ public class FileController {
     public ResponseEntity<Resource> getExtrato(@PathVariable Long idUsuario,
                                                @PathVariable Long idConta,
                                                @RequestParam Boolean csvFile) throws FileNotFoundException {
-        UltimasAtividades ultimasAtividades = contabilUltimasAtividadesService.requestConta(idUsuario, idConta);
+        UltimasAtividades ultimasAtividades = economigosService.requestContaById(idUsuario, idConta);
 
         List<ContabilUltimasAtividades> atividadesList = ultimasAtividades.getContabilUltimasAtividadesDtos();
 
@@ -80,12 +77,26 @@ public class FileController {
 
     @PostMapping("/import")
     @Transactional
-    public ResponseEntity<String> importart(@RequestParam MultipartFile arquivo) throws IOException {
+    public ResponseEntity<String> importart(@RequestParam MultipartFile arquivo,
+                                            @RequestParam Boolean imagem) throws IOException {
         if(!arquivo.isEmpty()){
-            Anexo anexo = new Anexo(arquivo.getOriginalFilename(), "01".getBytes(), arquivo.getBytes(), "02".getBytes());
-            anexoRepository.save(anexo);
 
-            return ResponseEntity.ok().body("Arquivo guardado.");
+            if (!imagem) {
+
+
+                File file = new File("./src/main/resources/input-files/"+ arquivo.getOriginalFilename());
+
+                try (OutputStream os = new FileOutputStream(file)) {
+                    os.write(arquivo.getBytes());
+                }
+
+                anexoRepository.save(LeArquivo.leArquivo(new FileReader(file), arquivo.getOriginalFilename()));
+
+                return ResponseEntity.ok().body("Arquivo guardado.");
+            }else{
+                return ResponseEntity.ok().body("Imagem guardada.");
+            }
+
         }else{
             return ResponseEntity.badRequest().body("Arquivo vazio.");
         }
