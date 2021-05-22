@@ -86,7 +86,7 @@ public class FileController {
         if(!arquivo.isEmpty()){
 
             if (!imagem) {
-                File file = new File("./src/main/resources/input-files/"+ arquivo.getOriginalFilename());
+                File file = new File(arquivo.getOriginalFilename());
 
                 try (OutputStream os = new FileOutputStream(file)) {
                     os.write(arquivo.getBytes());

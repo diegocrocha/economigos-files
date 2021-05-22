@@ -42,7 +42,7 @@ public class GravaArquivo {
         boolean crashed = false;
 
         if (csvFile) {
-            nomeDoArquivo = "./src/main/resources/output-files/" + nomeDoArquivo + ".csv";
+            nomeDoArquivo = nomeDoArquivo + ".csv";
             file = new File(nomeDoArquivo);
             FileWriter arquivo = new FileWriter(file);
             arquivo.flush();
@@ -74,7 +74,7 @@ public class GravaArquivo {
             }
 
         } else {
-            nomeDoArquivo = "./src/main/resources/output-files/" + nomeDoArquivo + ".txt";
+            nomeDoArquivo = nomeDoArquivo + ".txt";
             file = new File(nomeDoArquivo);
             FileWriter arquivo = new FileWriter(file);
             arquivo.flush();
