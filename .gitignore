@@ -1,6 +1,5 @@
 target/
 .idea/
-src/main/resources/output-files/
 economigos-files.iml
 pom.xml.tag
 pom.xml.releaseBackup
